@@ -8,6 +8,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { assessmentService, questionService, counselingService } from '@/lib/data-service';
 import { getRiskLevel, DOMAIN_LABELS, DOMAIN_ICONS, OutputDomain, RISK_LEVELS, User, Assessment, QuestionMaster } from '@/lib/types';
+import { QUESTION_MASTER } from '@/lib/questions';
 import {
   calculateDomainScores,
   calculateTotalScore,
@@ -325,9 +326,8 @@ function DetailTab({ scores, answers }: { scores: DomainScoreResult[]; answers: 
       <h3 className="text-lg font-bold text-white">🔍 領域別 詳細分析</h3>
       {scores.map((score) => {
         const riskInfo = getRiskLevel(score.normalizedScore);
-        const { QUESTION_MASTER } = require('@/lib/questions');
         const domainQuestions = QUESTION_MASTER.filter(
-          (q: any) => q.active && q.output_domains.includes(score.domain as OutputDomain)
+          (q: QuestionMaster) => q.active && q.output_domains.includes(score.domain as OutputDomain)
         );
 
         return (
@@ -349,7 +349,7 @@ function DetailTab({ scores, answers }: { scores: DomainScoreResult[]; answers: 
             </div>
             {/* 個別回答 */}
             <div className="space-y-2">
-              {domainQuestions.map((q) => {
+              {domainQuestions.map((q: QuestionMaster) => {
                 const val = answers[q.id];
                 return (
                   <div key={q.id} className="flex items-center gap-2 p-2 rounded-lg" style={{ background: 'var(--bg-elevated)' }}>
