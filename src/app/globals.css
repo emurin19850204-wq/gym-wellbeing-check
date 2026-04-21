@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+/* ============================================
+   グローバルスタイル - ジム ウェルビーイングチェック
+   ============================================ */
+
+/* カスタムプロパティ */
+:root {
+  /* プライマリカラー - ディープティール */
+  --primary-50: #f0fdfa;
+  --primary-100: #ccfbf1;
+  --primary-200: #99f6e4;
+  --primary-300: #5eead4;
+  --primary-400: #2dd4bf;
+  --primary-500: #14b8a6;
+  --primary-600: #0d9488;
+  --primary-700: #0f766e;
+  --primary-800: #115e59;
+  --primary-900: #134e4a;
+
+  /* アクセントカラー - インディゴ */
+  --accent-500: #6366f1;
+  --accent-600: #4f46e5;
+
+  /* ダーク背景 */
+  --bg-dark: #0f1117;
+  --bg-card: #1a1d26;
+  --bg-card-hover: #222632;
+  --bg-elevated: #252830;
+
+  /* テキスト */
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  /* ボーダー */
+  --border-subtle: rgba(148, 163, 184, 0.1);
+  --border-active: rgba(20, 184, 166, 0.3);
+
+  /* シャドウ */
+  --shadow-glow: 0 0 20px rgba(20, 184, 166, 0.15);
+
+  /* フォント */
+  --font-sans: 'Noto Sans JP', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ベーススタイル */
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* スクロールバー */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* カード共通 */
+.card-glass {
+  background: rgba(26, 29, 38, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.card-glass:hover {
+  border-color: var(--border-active);
+  box-shadow: var(--shadow-glow);
+}
+
+/* グラデーション背景 */
+.gradient-bg {
+  background: linear-gradient(135deg, #0f1117 0%, #1a1d26 50%, #0f1117 100%);
+}
+
+.gradient-primary {
+  background: linear-gradient(135deg, var(--primary-600), var(--accent-600));
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-400), var(--accent-500));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* アニメーション */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(20, 184, 166, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(20, 184, 166, 0.4);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* プログレスバー */
+.progress-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(148, 163, 184, 0.1);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease-out;
+}
+
+/* リスクレベル色 */
+.risk-stable { color: #10b981; }
+.risk-caution { color: #f59e0b; }
+.risk-needs-action { color: #f97316; }
+.risk-priority { color: #ef4444; }
+
+.risk-bg-stable { background-color: #10b981; }
+.risk-bg-caution { background-color: #f59e0b; }
+.risk-bg-needs-action { background-color: #f97316; }
+.risk-bg-priority { background-color: #ef4444; }
+
+/* ボタン */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(20, 184, 166, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-active);
+}
+
+/* 入力フィールド */
+.input-field {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: var(--text-primary);
+  font-size: 16px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+}
+
+.input-field::placeholder {
+  color: var(--text-muted);
+}
+
+/* モバイルファースト */
+@media (max-width: 768px) {
+  .card-glass {
+    border-radius: 12px;
+  }
+}
